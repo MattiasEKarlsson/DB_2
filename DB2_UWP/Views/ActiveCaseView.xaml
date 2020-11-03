@@ -55,6 +55,7 @@
                 </ListView.ItemTemplate>
             </ListView>
             
+            
             <TextBlock Text="Active Cases"  HorizontalAlignment="Center" FontSize="20" Margin="10"/>
             <ListView x:Name="lvActiveOutput" Margin="10" Height="350" BorderBrush="Black" Width="900" BorderThickness="1">
                 <ListView.ItemTemplate>
