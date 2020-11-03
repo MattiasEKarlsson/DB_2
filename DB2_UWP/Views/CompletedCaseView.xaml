@@ -20,6 +20,7 @@
         </StackPanel>
 
         <StackPanel Grid.Column="1">
+            <TextBlock Text="Completed Cases" HorizontalAlignment="Center" FontSize="20" Margin="10"/>
             <ListView x:Name="lvOutput" Margin="10" Height="650" BorderBrush="Black" Width="900" BorderThickness="1">
                 <ListView.ItemTemplate>
                     <DataTemplate>

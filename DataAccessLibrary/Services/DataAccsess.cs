@@ -101,14 +101,14 @@ namespace DataAccessLibrary.Services
             }
         }
 
-        public static IEnumerable<Case> GetAllFalse()
+        public static IEnumerable<Case> GetAllActive()
         {
 
             var caseList = new List<Case>();
             using (SqlConnection conn = new SqlConnection(_dbpath))
             {
                 conn.Open();
-                var query = "SELECT * FROM Cases WHERE Cases.Status = 'New'";
+                var query = "SELECT * FROM Cases WHERE Cases.Status = 'Active'";
 
 
                 SqlCommand cmd = new SqlCommand(query, conn);
@@ -167,6 +167,39 @@ namespace DataAccessLibrary.Services
             }
         }
 
+        public static IEnumerable<Case> GetAllNew()
+        {
+
+            var caseList = new List<Case>();
+            using (SqlConnection conn = new SqlConnection(_dbpath))
+            {
+                conn.Open();
+                var query = "SELECT * FROM Cases WHERE Cases.Status = 'New'";
+
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+
+                var result = cmd.ExecuteReader();
+
+                while (result.Read())
+                {
+                    int CaseId = result.GetInt32(0);
+                    string ClientName = result.GetString(1);
+                    string Title = result.GetString(2);
+                    string Problem = result.GetString(3);
+                    string Status = result.GetString(4);
+                    DateTime Created = result.GetDateTime(5);
+
+
+
+
+                    caseList.Add(new Case(CaseId, ClientName, Title, Problem, Status, Created));
+                }
+                conn.Close();
+                return caseList;
+
+            }
+        }
 
     }
 }

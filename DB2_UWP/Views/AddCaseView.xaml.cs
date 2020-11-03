@@ -33,7 +33,7 @@ namespace DB2_UWP.Views
         {
             Case cases = new Case(tbxClientname.Text, tbxTitle.Text, tbxProblem.Text, "New");
             await DataAccess.AddAsync(cases);
-            lvOutput.ItemsSource = DataAccess.GetAllFalse();
+            lvOutput.ItemsSource = DataAccess.GetAllNew();
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)

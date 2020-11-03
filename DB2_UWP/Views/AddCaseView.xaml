@@ -40,7 +40,7 @@
                                 <TextBlock Text="{Binding DisplayTitle}" FontSize="14" Margin="5"/>
                                 <TextBlock Text="{Binding DisplayClientName}" FontSize="14" Margin="5"/>
                                 <TextBlock Text="{Binding DisplayCreated}" FontSize="14" Margin="5"/>
-                                <TextBlock Text="Status: Active" FontSize="14" Margin="5"/>
+                                <TextBlock Text="Status: New" FontSize="14" Margin="5"/>
                             </StackPanel>
 
                             <StackPanel Grid.Column="1" Margin="10">

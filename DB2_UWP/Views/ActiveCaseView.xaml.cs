@@ -27,7 +27,8 @@ namespace DB2_UWP.Views
         public ActiveCaseView()
         {
             this.InitializeComponent();
-            lvOutput.ItemsSource = DataAccess.GetAllFalse();
+            lvNewOutput.ItemsSource = DataAccess.GetAllNew();
+            lvActiveOutput.ItemsSource = DataAccess.GetAllActive();
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
@@ -35,16 +36,21 @@ namespace DB2_UWP.Views
             Frame.Navigate(typeof(MainPage));
         }
 
-        private void btnUpdate_Click(object sender, RoutedEventArgs e)
+        private async void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
             Object selectedIteam = cbStatus.SelectedItem;
             string status = Convert.ToString(selectedIteam);
 
-            DataAccess.UpdateAsync(Convert.ToInt32(tbChooseCaseId.Text), status).GetAwaiter();
-            Thread.Sleep(50);
-            lvOutput.ItemsSource = DataAccess.GetAllFalse();
-            tbChooseCaseId.Text = string.Empty;
-            cbStatus.SelectedIndex = -1;
+            if (status != string.Empty && tbChooseCaseId.Text != string.Empty )
+            {
+                await DataAccess.UpdateAsync(Convert.ToInt32(tbChooseCaseId.Text), status);
+                Thread.Sleep(50);
+                lvNewOutput.ItemsSource = DataAccess.GetAllNew();
+                lvActiveOutput.ItemsSource = DataAccess.GetAllActive();
+                tbChooseCaseId.Text = string.Empty;
+                cbStatus.SelectedIndex = -1;
+            }
+            
         }
     }
 }
