@@ -1,10 +1,12 @@
 ﻿using DataAccessLibrary.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Storage;
 
 namespace DataAccessLibrary.Services
 {
@@ -199,6 +201,19 @@ namespace DataAccessLibrary.Services
                 return caseList;
 
             }
+        }
+
+        public static async Task GetJsonSettings()
+        {
+            var jsonFilePath = @"C:";
+            StorageFile file = await StorageFile.GetFileFromPathAsync(jsonFilePath);
+
+            string text = await FileIO.ReadTextAsync(file);
+            var obj = JsonConvert.DeserializeObject<dynamic>(text);
+
+            //Configuration config = new Configuration(Convert.ToInt32(obj.NumberOfItems), Convert.ToString(obj.Status1), Convert.ToString(obj.Status2), Convert.ToString(obj.Status3));
+
+            //return config;
         }
 
     }

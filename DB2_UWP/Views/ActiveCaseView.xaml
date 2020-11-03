@@ -13,6 +13,7 @@
     <Grid Margin="30">
         <Grid.Resources>
             <models:Settings x:Key="settings"/>
+            <models:Case x:Key="case"/>
         </Grid.Resources>
         
         <Grid.ColumnDefinitions>
@@ -31,7 +32,7 @@
             <TextBlock Text="New Cases" HorizontalAlignment="Center" FontSize="20" Margin="10"/>
             <ListView x:Name="lvNewOutput" Margin="10" Height="350" BorderBrush="Black" Width="900" BorderThickness="1">
                 <ListView.ItemTemplate>
-                    <DataTemplate>
+                    <DataTemplate x:DataType="models:Case">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="300"/>
@@ -39,11 +40,11 @@
                             </Grid.ColumnDefinitions>
 
                             <StackPanel Grid.Column="0" Margin="10" >
-                                <TextBlock Text="{Binding DisplayCaseId}" FontSize="14" Margin="5"/>
-                                <TextBlock Text="{Binding DisplayTitle}" FontSize="14" Margin="5"/>
-                                <TextBlock Text="{Binding DisplayClientName}" FontSize="14" Margin="5"/>
-                                <TextBlock Text="{Binding DisplayCreated}" FontSize="14" Margin="5"/>
-                                <TextBlock Text="Status: New" FontSize="14" Margin="5"/>
+                                <TextBlock Text="{x:Bind  DisplayCaseId}" FontSize="14" Margin="5"/>
+                                <TextBlock Text="{x:Bind DisplayTitle}" FontSize="14" Margin="5"/>
+                                <TextBlock Text="{x:Bind DisplayClientName}" FontSize="14" Margin="5"/>
+                                <TextBlock Text="{x:Bind DisplayCreated}" FontSize="14" Margin="5"/>
+                                <TextBlock Text="{x:Bind DisplayStatus}" FontSize="14" Margin="5"/>
                             </StackPanel>
 
                             <StackPanel Grid.Column="1" Margin="10">
@@ -53,10 +54,11 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <TextBlock Text="Active Cases" HorizontalAlignment="Center" FontSize="20" Margin="10"/>
+            
+            <TextBlock Text="Active Cases"  HorizontalAlignment="Center" FontSize="20" Margin="10"/>
             <ListView x:Name="lvActiveOutput" Margin="10" Height="350" BorderBrush="Black" Width="900" BorderThickness="1">
                 <ListView.ItemTemplate>
-                    <DataTemplate>
+                    <DataTemplate  x:DataType="models:Case">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="300"/>
@@ -64,11 +66,11 @@
                             </Grid.ColumnDefinitions>
 
                             <StackPanel Grid.Column="0" Margin="10" >
-                                <TextBlock Text="{Binding DisplayCaseId}" FontSize="14" Margin="5"/>
-                                <TextBlock Text="{Binding DisplayTitle}" FontSize="14" Margin="5"/>
-                                <TextBlock Text="{Binding DisplayClientName}" FontSize="14" Margin="5"/>
-                                <TextBlock Text="{Binding DisplayCreated}" FontSize="14" Margin="5"/>
-                                <TextBlock Text="Status: Active" FontSize="14" Margin="5"/>
+                                <TextBlock Text="{x:Bind DisplayCaseId}" FontSize="14" Margin="5"/>
+                                <TextBlock Text="{x:Bind DisplayTitle}" FontSize="14" Margin="5"/>
+                                <TextBlock Text="{x:Bind DisplayClientName}" FontSize="14" Margin="5"/>
+                                <TextBlock Text="{x:Bind DisplayCreated}" FontSize="14" Margin="5"/>
+                                <TextBlock Text="{x:Bind DisplayStatus}" FontSize="14" Margin="5"/>
                             </StackPanel>
 
                             <StackPanel Grid.Column="1" Margin="10">
