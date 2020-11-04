@@ -30,6 +30,7 @@ namespace DB2_UWP
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            DataAccessLibrary.Services.DataAccess.CreateSettingsFileAsync().GetAwaiter();
         }
 
         /// <summary>

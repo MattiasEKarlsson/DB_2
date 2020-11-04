@@ -47,5 +47,6 @@
             </StackPanel>
         </StackPanel>
         <Image Grid.Column="1" HorizontalAlignment="Right" Height="100" VerticalAlignment="Top" Margin="30" Width="100"/>
+        
     </Grid>
 </Page>

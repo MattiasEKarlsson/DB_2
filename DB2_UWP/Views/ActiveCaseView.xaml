@@ -11,7 +11,7 @@
 
     <Grid Margin="30">
         <Grid.Resources>
-            <models:Settings x:Key="settings"/>
+            <models:SetStatus x:Key="settingstatus"/>
             <models:Case x:Key="case"/>
         </Grid.Resources>
         
@@ -69,7 +69,7 @@
             <TextBlock Text="Update Status" HorizontalAlignment="Center" FontSize="20" Margin="20"/>
             
                 <TextBox x:Name="tbChooseCaseId" Header="Enter Case Id" Width="200" PlaceholderText="Id"/>
-                <ComboBox x:Name="cbStatus" Header="Choose new status" ItemsSource="{StaticResource settings}" PlaceholderText="Pick a status" Width="200" Margin="20" HorizontalAlignment="Center"/>
+                <ComboBox x:Name="cbStatus" Header="Choose new status" ItemsSource="{StaticResource settingstatus}" PlaceholderText="Pick a status" Width="200" Margin="20" HorizontalAlignment="Center"/>
                 <Button x:Name="btnUpdate" Click="btnUpdate_Click" Background="Transparent" HorizontalAlignment="Center">
                     <SymbolIcon Symbol="Accept"/>
                 </Button>

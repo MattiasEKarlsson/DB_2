@@ -203,17 +203,23 @@ namespace DataAccessLibrary.Services
             }
         }
 
-        public static async Task GetJsonSettings()
+       public static async Task CreateSettingsFileAsync()
         {
-            var jsonFilePath = @"C:";
-            StorageFile file = await StorageFile.GetFileFromPathAsync(jsonFilePath);
+            StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
+            StorageFile settingsFile = await storageFolder.CreateFileAsync("settings.json", CreationCollisionOption.ReplaceExisting);
 
-            string text = await FileIO.ReadTextAsync(file);
-            var obj = JsonConvert.DeserializeObject<dynamic>(text);
+            var json = "{\"status\": [\"Active\",\"Completed\",\"New\"]}";
+            await FileIO.WriteTextAsync(settingsFile, json);
+        }
 
-            //Configuration config = new Configuration(Convert.ToInt32(obj.NumberOfItems), Convert.ToString(obj.Status1), Convert.ToString(obj.Status2), Convert.ToString(obj.Status3));
+        public static async Task<string> GetJsonSettings()
+        {
 
-            //return config;
+            StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
+            StorageFile settingsFile = await storageFolder.GetFileAsync("settings.json");
+            string text = await FileIO.ReadTextAsync(settingsFile);
+
+            return text;
         }
 
     }
