@@ -39,7 +39,7 @@ namespace DataAccessLibrary.Models
             Title = title;
             Problem = problem;
             Status = status;
-            Created = DateTime.Now;
+            Created = created;
         }
 
         public Case()
