@@ -38,19 +38,22 @@ namespace DB2_UWP.Views
 
         private async void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
-            Object selectedIteam = cbStatus.SelectedItem;
-            string status = Convert.ToString(selectedIteam);
-
-            if (status != string.Empty && tbChooseCaseId.Text != string.Empty )
+            try
             {
-                await DataAccess.UpdateAsync(Convert.ToInt32(tbChooseCaseId.Text), status);
-                Thread.Sleep(50);
-                lvNewOutput.ItemsSource = DataAccess.GetAllNew();
-                lvActiveOutput.ItemsSource = DataAccess.GetAllActive();
-                tbChooseCaseId.Text = string.Empty;
-                cbStatus.SelectedIndex = -1;
+                Object selectedIteam = cbStatus.SelectedItem;
+                string status = Convert.ToString(selectedIteam);
+
+                if (status != string.Empty && tbChooseCaseId.Text != string.Empty)
+                {
+                    await DataAccess.UpdateAsync(Convert.ToInt32(tbChooseCaseId.Text), status);
+                    Thread.Sleep(50);
+                    lvNewOutput.ItemsSource = DataAccess.GetAllNew();
+                    lvActiveOutput.ItemsSource = DataAccess.GetAllActive();
+                    tbChooseCaseId.Text = string.Empty;
+                    cbStatus.SelectedIndex = -1;
+                }
             }
-            
+            catch { }
         }
     }
 }

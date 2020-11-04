@@ -31,13 +31,20 @@ namespace DB2_UWP.Views
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            Case cases = new Case(tbxClientname.Text, tbxTitle.Text, tbxProblem.Text, "New");
-            await DataAccess.AddAsync(cases);
-            lvOutput.ItemsSource = DataAccess.GetAllNew();
+            try
+            {
+                if (tbxClientname.Text != string.Empty && tbxTitle.Text != string.Empty && tbxProblem.Text != string.Empty)
+                {
+                    Case cases = new Case(tbxClientname.Text, tbxTitle.Text, tbxProblem.Text, "New");
+                    await DataAccess.AddAsync(cases);
+                    lvOutput.ItemsSource = DataAccess.GetAllNew();
 
-            tbxClientname.Text = string.Empty;
-            tbxTitle.Text = string.Empty;
-            tbxProblem.Text = string.Empty;
+                    tbxClientname.Text = string.Empty;
+                    tbxTitle.Text = string.Empty;
+                    tbxProblem.Text = string.Empty;
+                }
+            }
+            catch { }
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
