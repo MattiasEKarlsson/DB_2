@@ -4,7 +4,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:DB2_UWP.Views"
     xmlns:models="using:DataAccessLibrary.Models"
-    
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
@@ -17,7 +16,7 @@
         </Grid.Resources>
         
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="70"/>
             <ColumnDefinition/>
 
         </Grid.ColumnDefinitions>
@@ -27,75 +26,53 @@
             </Button>
 
         </StackPanel>
-
         <StackPanel Grid.Column="1">
             <TextBlock Text="New Cases" HorizontalAlignment="Center" FontSize="20" Margin="10"/>
             <ListView x:Name="lvNewOutput" Margin="10" Height="350" BorderBrush="Black" Width="900" BorderThickness="1">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="models:Case">
                         <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="300"/>
-                                <ColumnDefinition Width="600"/>
-                            </Grid.ColumnDefinitions>
-
-                            <StackPanel Grid.Column="0" Margin="10" >
+                            <StackPanel Grid.Column="0" Margin="10" Orientation="Horizontal" >
                                 <TextBlock Text="{x:Bind  DisplayCaseId}" FontSize="14" Margin="5"/>
                                 <TextBlock Text="{x:Bind DisplayTitle}" FontSize="14" Margin="5"/>
                                 <TextBlock Text="{x:Bind DisplayClientName}" FontSize="14" Margin="5"/>
                                 <TextBlock Text="{x:Bind DisplayCreated}" FontSize="14" Margin="5"/>
                                 <TextBlock Text="{x:Bind DisplayStatus}" FontSize="14" Margin="5"/>
                             </StackPanel>
-
-                            <StackPanel Grid.Column="1" Margin="10">
-                                <TextBlock Text="{Binding DisplayProblem}" Margin="0,0,20,0" FontSize="14" TextWrapping="Wrap" />
-                            </StackPanel>
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            
+            <StackPanel DataContext="{Binding SelectedItem, ElementName=lvNewOutput}" Margin="10" Width="900">
+                <TextBlock TextWrapping="WrapWholeWords" Text="{Binding DisplayProblem}" HorizontalAlignment="Center"/>
+            </StackPanel>
             
             <TextBlock Text="Active Cases"  HorizontalAlignment="Center" FontSize="20" Margin="10"/>
             <ListView x:Name="lvActiveOutput" Margin="10" Height="350" BorderBrush="Black" Width="900" BorderThickness="1">
                 <ListView.ItemTemplate>
                     <DataTemplate  x:DataType="models:Case">
                         <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="300"/>
-                                <ColumnDefinition Width="600"/>
-                            </Grid.ColumnDefinitions>
-
-                            <StackPanel Grid.Column="0" Margin="10" >
+                            <StackPanel Grid.Column="0" Margin="10" Orientation="Horizontal" >
                                 <TextBlock Text="{x:Bind DisplayCaseId}" FontSize="14" Margin="5"/>
                                 <TextBlock Text="{x:Bind DisplayTitle}" FontSize="14" Margin="5"/>
                                 <TextBlock Text="{x:Bind DisplayClientName}" FontSize="14" Margin="5"/>
                                 <TextBlock Text="{x:Bind DisplayCreated}" FontSize="14" Margin="5"/>
                                 <TextBlock Text="{x:Bind DisplayStatus}" FontSize="14" Margin="5"/>
                             </StackPanel>
-
-                            <StackPanel Grid.Column="1" Margin="10">
-                                <TextBlock Text="{Binding DisplayProblem}" Margin="0,0,20,0" FontSize="14" TextWrapping="Wrap" />
-                            </StackPanel>
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <StackPanel DataContext="{Binding SelectedItem, ElementName=lvActiveOutput}" Margin="10" Width="900">
+                <TextBlock TextWrapping="WrapWholeWords" Text="{Binding DisplayProblem}" HorizontalAlignment="Center"/>
+            </StackPanel>
             <TextBlock Text="Update Status" HorizontalAlignment="Center" FontSize="20" Margin="20"/>
-            
             
                 <TextBox x:Name="tbChooseCaseId" Header="Enter Case Id" Width="200" PlaceholderText="Id"/>
                 <ComboBox x:Name="cbStatus" Header="Choose new status" ItemsSource="{StaticResource settings}" PlaceholderText="Pick a status" Width="200" Margin="20" HorizontalAlignment="Center"/>
                 <Button x:Name="btnUpdate" Click="btnUpdate_Click" Background="Transparent" HorizontalAlignment="Center">
                     <SymbolIcon Symbol="Accept"/>
                 </Button>
-            
-
-
         </StackPanel>
-        
-        <Image HorizontalAlignment="Right" Height="100" VerticalAlignment="Top" Margin="30" Width="100" Source="/Assets/c-sharp.png"/>
-
-
     </Grid>
 </Page>
