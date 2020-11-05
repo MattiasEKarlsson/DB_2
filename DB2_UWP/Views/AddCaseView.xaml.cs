@@ -35,9 +35,6 @@ namespace DB2_UWP.Views
             catch { }
         }
 
-        private void btnBack_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(MainPage));
-        }
+        
     }
 }

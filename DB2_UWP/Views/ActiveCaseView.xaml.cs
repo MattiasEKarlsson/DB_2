@@ -21,11 +21,6 @@ namespace DB2_UWP.Views
             lvActiveOutput.ItemsSource = DataAccess.GetAllActive();
         }
 
-        private void btnBack_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(MainPage));
-        }
-
         private async void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
             try

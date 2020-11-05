@@ -16,10 +16,5 @@ namespace DB2_UWP.Views
             this.InitializeComponent();
             lvOutput.ItemsSource = DataAccess.GetAllCompleted();
         }
-
-        private void btnBack_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(MainPage));
-        }
     }
 }

@@ -16,21 +16,33 @@ namespace DB2_UWP
             this.InitializeComponent();
         }
 
-        private void ActiveCases_Click(object sender, RoutedEventArgs e)
+        private void NavView_Loaded(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(ActiveCaseView));
+            ContentFrame.Navigate(typeof(ActiveCaseView));
         }
 
-        private void btnCompCases_Click(object sender, RoutedEventArgs e)
+        private void NavView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
-            Frame.Navigate(typeof(CompletedCaseView));
-        }
+            
+                NavigationViewItem item = args.SelectedItem as NavigationViewItem;
 
-        private void btnAddCase_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(AddCaseView));
-        }
+                switch (item.Tag.ToString())
+                {
+                    case "AddCaseView":
+                        ContentFrame.Navigate(typeof(AddCaseView));
+                        break;
 
-  
+                    case "ActiveCaseView":
+                        ContentFrame.Navigate(typeof(ActiveCaseView));
+                        break;
+
+                    case "CompletedCaseView":
+                        ContentFrame.Navigate(typeof(CompletedCaseView));
+                        break;
+
+                }
+            
+            
+        }
     }
 }

@@ -211,7 +211,7 @@ namespace DataAccessLibrary.Services
             StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
             StorageFile settingsFile = await storageFolder.CreateFileAsync("settings.json", CreationCollisionOption.ReplaceExisting);
 
-            var json = "{\"status\": [\"Active\",\"Completed\",\"New\", \"10\"]}";
+            var json = "{\"status\": [\"Active\",\"Completed\",\"New\", \"50\"]}";
             await FileIO.WriteTextAsync(settingsFile, json);
         }
 

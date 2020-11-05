@@ -11,12 +11,13 @@ namespace DataAccessLibrary.Models
         public string Status { get; set; }
         public DateTime Created = DateTime.Now;
 
-        public string DisplayCaseId => $"CaseId: {CaseId}";
-        public string DisplayClientName => $"ClientName: {ClientName}";
-        public string DisplayTitle => $"Title: {Title}";
-        public string DisplayProblem => $"Problem: {Problem}";
-        public string DisplayStatus => $"Status: {Status}";
-        public string DisplayCreated => $"Created: {Created}";
+        public string DisplayCaseId => $"CaseId:  {CaseId}";
+        public string DisplayClientName => $"ClientName:  {ClientName}";
+        public string DisplayTitle => $"Title:  {Title}";
+        public string DisplayProblem => $"Problem:  {Problem}";
+        public string DisplayStatus => $"Status:  {Status}";
+        public string DisplayCreated => $"Created:  {Created}";
+        
 
         public Case(string clientname, string title, string problem, string status)
         {
