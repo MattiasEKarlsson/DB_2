@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccessLibrary.Models
 {
@@ -29,7 +25,6 @@ namespace DataAccessLibrary.Models
             Problem = problem;
             Status = status;
             Created = DateTime.Now;
-
         }
 
         public Case(int caseid, string clientname, string title, string problem, string status, DateTime created)
@@ -46,11 +41,5 @@ namespace DataAccessLibrary.Models
         {
 
         }
-
-        
-
-
-
-
     }
 }

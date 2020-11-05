@@ -13,10 +13,9 @@ namespace DataAccessLibrary.Models
     {
         public SetStatus() 
         {
-            Add(GetStatusSettings(0));
-            Add(GetStatusSettings(1));
-            Add(GetStatusSettings(2));
-
+            Add(DataAccess.GetStatusSettings(0));
+            Add(DataAccess.GetStatusSettings(1));
+            Add(DataAccess.GetStatusSettings(2));
         }
 
         public SetStatus(int maxNumber, string statusNew, string statusActive, string statusCompleted)
@@ -31,15 +30,5 @@ namespace DataAccessLibrary.Models
         public string StatusNew { get; set; }
         public string StatusActive { get; set; }
         public string StatusCompleted { get; set; }
-
-        private string GetStatusSettings(int array)
-        {
-            var num = Task.Run(() => DataAccess.GetJsonSettings()).Result;
-            var settings = JsonConvert.DeserializeObject<Settings>(num);
-            string num1 = settings.status[array];
-            return num1;
-        }
     }
-
-    
 }
