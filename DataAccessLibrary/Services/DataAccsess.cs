@@ -10,7 +10,7 @@ namespace DataAccessLibrary.Services
 {
     public static class DataAccess
     {
-        private static readonly string _dbpath = @"Server=tcp:ecwin20.database.windows.net,1433;Initial Catalog=MattiasDB;Persist Security Info=False;User ID=sqlAdmin;Password=bytmig123!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+        private static readonly string _dbpath = @"";
 
         #region Add/Update/Delete
 

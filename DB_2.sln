@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLibrary", "DataAc
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SqlQuery", "SqlQuery", "{1064330F-D3FF-4577-8734-CC9F2D3563D0}"
 	ProjectSection(SolutionItems) = preProject
-		SqlQuery.sql = SqlQuery.sql
+		SqlQueryCases.sql = SqlQueryCases.sql
 		SqlQueryComments.sql = SqlQueryComments.sql
 	EndProjectSection
 EndProject

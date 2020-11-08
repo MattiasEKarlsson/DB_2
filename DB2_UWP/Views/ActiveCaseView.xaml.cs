@@ -17,8 +17,11 @@ namespace DB2_UWP.Views
         public ActiveCaseView()
         {
             this.InitializeComponent();
-
-            lvNewOutput.ItemsSource = DataAccess.GetAllActive();
+            try
+            {
+                lvNewOutput.ItemsSource = DataAccess.GetAllActive();
+            }
+            catch { }
             
         }
 
@@ -52,11 +55,7 @@ namespace DB2_UWP.Views
                     tbComment.Text = string.Empty;
                 }
             }
-            catch (Exception)
-            {
-
-                throw;
-            }
+            catch { }
                 
            
         }
@@ -70,12 +69,7 @@ namespace DB2_UWP.Views
                     lvComments.ItemsSource = DataAccess.GetAllComments(Convert.ToInt32(tbChooseCaseIdComment.Text));
                 }
             }
-            catch (Exception)
-            {
-
-                throw;
-            }
-           
+            catch { }
             
         }
     }

@@ -14,7 +14,11 @@ namespace DB2_UWP.Views
         public CompletedCaseView()
         {
             this.InitializeComponent();
-            lvOutput.ItemsSource = DataAccess.GetAllCompleted();
+            try
+            {
+                lvOutput.ItemsSource = DataAccess.GetAllCompleted();
+            }
+            catch { }
         }
     }
 }

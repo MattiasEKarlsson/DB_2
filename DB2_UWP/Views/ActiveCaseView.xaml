@@ -29,7 +29,6 @@
                                         <ColumnDefinition Width="400"/>
                                         <ColumnDefinition Width="200"/>
                                         <ColumnDefinition Width="300"/>
-
                                     </Grid.ColumnDefinitions>
                                     <StackPanel Margin="10" Orientation="Horizontal" Grid.Column="0">
                                         <TextBlock Text="CaseId: " FontSize="16" />
@@ -58,7 +57,7 @@
                     <TextBlock Text="{Binding DisplayClientName}" FontSize="16"/>
                 </StackPanel>
                 <StackPanel Margin="10" Orientation="Horizontal">
-                    <TextBlock TextWrapping="WrapWholeWords" Text="{Binding DisplayProblem}" FontSize="16" Width="800" Height="140"/>
+                    <TextBlock TextWrapping="WrapWholeWords" Text="{Binding DisplayProblem}" FontSize="16" Width="1000" Height="140"/>
                 </StackPanel>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
@@ -70,7 +69,6 @@
                         <SymbolIcon Symbol="Accept"/>
                     </Button>
                 </StackPanel>
-                
                 <StackPanel DataContext="{Binding SelectedItem, ElementName=lvNewOutput}" HorizontalAlignment="Right"  Margin="400,0,0,0">
                     <TextBlock Text="Create Comment" HorizontalAlignment="Center" FontSize="20"/>
                     <TextBox x:Name="tbChooseCaseIdComment" Header="Case Id" Width="200" Text="{Binding CaseId}"/>
@@ -81,8 +79,7 @@
                     <Button x:Name="btnShowComment" Click="btnShowComment_Click" HorizontalAlignment="Center" Content="Show Comments" Margin="10"/>
                 </StackPanel>
             </StackPanel>
-            
-            <ListView x:Name="lvComments">
+            <ListView x:Name="lvComments" Width="1000">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="models:Comments">
                         <StackPanel Orientation="Horizontal">

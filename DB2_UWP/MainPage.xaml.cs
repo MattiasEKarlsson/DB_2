@@ -18,12 +18,17 @@ namespace DB2_UWP
 
         private void NavView_Loaded(object sender, RoutedEventArgs e)
         {
-            ContentFrame.Navigate(typeof(ActiveCaseView));
+            try
+            {
+                ContentFrame.Navigate(typeof(ActiveCaseView));
+            }
+            catch { }
         }
 
         private void NavView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
-            
+            try
+            {
                 NavigationViewItem item = args.SelectedItem as NavigationViewItem;
 
                 switch (item.Tag.ToString())
@@ -41,6 +46,10 @@ namespace DB2_UWP
                         break;
 
                 }
+            }
+            catch { }
+            
+                
             
             
         }
