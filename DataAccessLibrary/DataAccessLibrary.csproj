@@ -121,6 +121,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Models\Case.cs" />
+    <Compile Include="Models\Comments.cs" />
     <Compile Include="Models\SetStatus.cs" />
     <Compile Include="Models\Settings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

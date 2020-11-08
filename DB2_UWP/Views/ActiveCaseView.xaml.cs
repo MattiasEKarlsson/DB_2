@@ -1,4 +1,5 @@
-﻿using DataAccessLibrary.Services;
+﻿using DataAccessLibrary.Models;
+using DataAccessLibrary.Services;
 using System;
 using System.Threading;
 using Windows.UI.Xaml;
@@ -37,6 +38,45 @@ namespace DB2_UWP.Views
                 }
             }
             catch { }
+        }
+
+        private async void btnAddComment_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (tbComment.Text != string.Empty && tbChooseCaseIdComment.Text != string.Empty)
+                {
+                    Comments comment = new Comments(tbComment.Text, Convert.ToInt32(tbChooseCaseIdComment.Text));
+                    await DataAccess.AddCommentAsync(comment);
+
+                    tbComment.Text = string.Empty;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+                
+           
+        }
+
+        private  void btnShowComment_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (tbChooseCaseIdComment.Text != string.Empty)
+                {
+                    lvComments.ItemsSource = DataAccess.GetAllComments(Convert.ToInt32(tbChooseCaseIdComment.Text));
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+           
+            
         }
     }
 }

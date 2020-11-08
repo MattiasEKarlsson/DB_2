@@ -44,6 +44,32 @@ namespace DataAccessLibrary.Services
 
         }
 
+        public static async Task AddCommentAsync(Comments comments)
+        {
+            try
+            {
+                using (SqlConnection sqlConn = new SqlConnection(_dbpath))
+                {
+                    sqlConn.Open();
+
+                    var query = "INSERT INTO Comments (Comment, Created, CaseId) VALUES(@Comment, @Created, @CaseId)";
+                    SqlCommand cmd = new SqlCommand(query, sqlConn);
+
+                    cmd.Parameters.AddWithValue("@Comment", comments.Comment );
+                    cmd.Parameters.AddWithValue("@Created", comments.Created);
+                    cmd.Parameters.AddWithValue("@CaseId", comments.CaseId);
+
+                    await cmd.ExecuteReaderAsync();
+
+                    sqlConn.Close();
+                }
+            }
+            catch { }
+
+
+
+        }
+
         public static async Task UpdateAsync(int id, string status)
         {
             try
@@ -89,6 +115,29 @@ namespace DataAccessLibrary.Services
         #endregion
 
         #region Getters
+
+        public static IEnumerable<Comments> GetAllComments(int id)
+        {
+            var commentList = new List<Comments>();
+            using (SqlConnection conn = new SqlConnection(_dbpath))
+            {
+                conn.Open();
+                var query = "SELECT DISTINCT Comment, Created FROM Comments WHERE Comments.CaseId = @CaseId";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@CaseId", id);
+
+                var result = cmd.ExecuteReader();
+                while (result.Read())
+                {
+                    string Comment = result.GetString(0);
+                    DateTime Created = result.GetDateTime(1);
+
+                    commentList.Add(new Comments(Comment, Created));
+                }
+                conn.Close();
+                return commentList;
+            }
+        }
 
         public static IEnumerable<Case> GetAllAsync()
         {
