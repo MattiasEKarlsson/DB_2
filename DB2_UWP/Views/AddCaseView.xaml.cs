@@ -1,5 +1,6 @@
 ﻿using DataAccessLibrary.Models;
 using DataAccessLibrary.Services;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -34,7 +35,5 @@ namespace DB2_UWP.Views
             }
             catch { }
         }
-
-        
     }
 }

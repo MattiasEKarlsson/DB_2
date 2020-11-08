@@ -13,5 +13,6 @@ namespace DataAccessLibrary.Models
     public class Settings
     {
         public string[] status { get; set; }
+        
     }
 }
