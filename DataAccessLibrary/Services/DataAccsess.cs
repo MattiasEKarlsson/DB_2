@@ -16,60 +16,75 @@ namespace DataAccessLibrary.Services
 
         public static async Task AddAsync(Case cases)
         {
-            using (SqlConnection sqlConn = new SqlConnection(_dbpath))
+            try
             {
-                sqlConn.Open();
+                using (SqlConnection sqlConn = new SqlConnection(_dbpath))
+                {
+                    sqlConn.Open();
 
-                var query = "INSERT INTO Cases (ClientName, Title, Problem, Status, Created) VALUES(@ClientName, @Title, @Problem, @Status, @Created)";
-                SqlCommand cmd = new SqlCommand(query, sqlConn);
-
-
-                cmd.Parameters.AddWithValue("@ClientName", cases.ClientName);
-                cmd.Parameters.AddWithValue("@Title", cases.Title);
-                cmd.Parameters.AddWithValue("@Problem", cases.Problem);
-                cmd.Parameters.AddWithValue("@Status", cases.Status);
-                cmd.Parameters.AddWithValue("@Created", cases.Created);
+                    var query = "INSERT INTO Cases (ClientName, Title, Problem, Status, Created) VALUES(@ClientName, @Title, @Problem, @Status, @Created)";
+                    SqlCommand cmd = new SqlCommand(query, sqlConn);
 
 
-                await cmd.ExecuteReaderAsync();
+                    cmd.Parameters.AddWithValue("@ClientName", cases.ClientName);
+                    cmd.Parameters.AddWithValue("@Title", cases.Title);
+                    cmd.Parameters.AddWithValue("@Problem", cases.Problem);
+                    cmd.Parameters.AddWithValue("@Status", cases.Status);
+                    cmd.Parameters.AddWithValue("@Created", cases.Created);
 
-                sqlConn.Close();
+
+                    await cmd.ExecuteReaderAsync();
+
+                    sqlConn.Close();
+                }
             }
+            catch { }
+           
+            
 
         }
 
         public static async Task UpdateAsync(int id, string status)
         {
-            using (SqlConnection sqlConn = new SqlConnection(_dbpath))
+            try
             {
-                sqlConn.Open();
+                using (SqlConnection sqlConn = new SqlConnection(_dbpath))
+                {
+                    sqlConn.Open();
 
-                var query = "UPDATE Cases SET Status = @Status WHERE CaseId = @CaseId";
-                SqlCommand cmd = new SqlCommand(query, sqlConn);
+                    var query = "UPDATE Cases SET Status = @Status WHERE CaseId = @CaseId";
+                    SqlCommand cmd = new SqlCommand(query, sqlConn);
 
-                cmd.Parameters.AddWithValue("@CaseId", id);
-                cmd.Parameters.AddWithValue("@Status", status);
+                    cmd.Parameters.AddWithValue("@CaseId", id);
+                    cmd.Parameters.AddWithValue("@Status", status);
 
-                await cmd.ExecuteReaderAsync();
+                    await cmd.ExecuteReaderAsync();
 
-                sqlConn.Close();
+                    sqlConn.Close();
+                }
             }
+            catch { }
+         
+            
 
         }
 
         public static async Task DeleteAll()
         {
-            using (SqlConnection sqlConn = new SqlConnection(_dbpath))
+            try
             {
-                sqlConn.Open();
+                using (SqlConnection sqlConn = new SqlConnection(_dbpath))
+                {
+                    sqlConn.Open();
 
-                var query = "DELETE FROM Cases";
-                SqlCommand cmd = new SqlCommand(query, sqlConn);
-                await cmd.ExecuteReaderAsync();
-                sqlConn.Close();
+                    var query = "DELETE FROM Cases";
+                    SqlCommand cmd = new SqlCommand(query, sqlConn);
+                    await cmd.ExecuteReaderAsync();
+                    sqlConn.Close();
+                }
             }
-
-        }
+            catch { }
+        }   //Används EJ
 
         #endregion
 
@@ -77,6 +92,7 @@ namespace DataAccessLibrary.Services
 
         public static IEnumerable<Case> GetAllAsync()
         {
+
             var caselist = new List<Case>();
             using (SqlConnection sqlConn = new SqlConnection(_dbpath))
             {
@@ -111,7 +127,7 @@ namespace DataAccessLibrary.Services
             using (SqlConnection conn = new SqlConnection(_dbpath))
             {
                 conn.Open();
-                var query = "SELECT * FROM Cases WHERE Cases.Status = 'Active'";
+                var query = "SELECT * FROM Cases WHERE Cases.Status != 'Completed'";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
 
@@ -208,27 +224,44 @@ namespace DataAccessLibrary.Services
 
         public static async Task CreateSettingsFileAsync()
         {
-            StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
-            StorageFile settingsFile = await storageFolder.CreateFileAsync("settings.json", CreationCollisionOption.ReplaceExisting);
+            try
+            {
+                StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
+                StorageFile settingsFile = await storageFolder.CreateFileAsync("settings.json", CreationCollisionOption.ReplaceExisting);
 
-            var json = "{\"status\": [\"Active\",\"Completed\",\"New\", \"50\"]}";
-            await FileIO.WriteTextAsync(settingsFile, json);
+                var json = "{\"status\": [\"Active\",\"Completed\",\"New\", \"50\"]}";
+                await FileIO.WriteTextAsync(settingsFile, json);
+            }
+            catch { }
+            
+            
         }
 
         public static async Task<string> GetJsonSettings()
         {
+            try
+            {
                 StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
                 StorageFile settingsFile = await storageFolder.GetFileAsync("settings.json");
                 string text = await FileIO.ReadTextAsync(settingsFile);
                 return text;
+            }
+            catch { return null; }
+               
         }
 
         public static string GetStatusSettings(int array)
         {
-            var num = Task.Run(() => DataAccess.GetJsonSettings()).Result;
-            var settings = JsonConvert.DeserializeObject<Settings>(num);
-            string num1 = settings.status[array];
-            return num1;
+            try
+            {
+                var num = Task.Run(() => DataAccess.GetJsonSettings()).Result;
+                var settings = JsonConvert.DeserializeObject<Settings>(num);
+                string num1 = settings.status[array];
+                return num1;
+            }
+            catch { return null; }
+            
+            
         }
 
         #endregion

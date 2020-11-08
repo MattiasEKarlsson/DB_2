@@ -17,8 +17,8 @@ namespace DB2_UWP.Views
         {
             this.InitializeComponent();
 
-            lvNewOutput.ItemsSource = DataAccess.GetAllNew();
-            lvActiveOutput.ItemsSource = DataAccess.GetAllActive();
+            lvNewOutput.ItemsSource = DataAccess.GetAllActive();
+            
         }
 
         private async void btnUpdate_Click(object sender, RoutedEventArgs e)
@@ -32,9 +32,7 @@ namespace DB2_UWP.Views
                 {
                     await DataAccess.UpdateAsync(Convert.ToInt32(tbChooseCaseId.Text), status);
                     Thread.Sleep(50);
-                    lvNewOutput.ItemsSource = DataAccess.GetAllNew();
-                    lvActiveOutput.ItemsSource = DataAccess.GetAllActive();
-                    tbChooseCaseId.Text = string.Empty;
+                    lvNewOutput.ItemsSource = DataAccess.GetAllActive();
                     cbStatus.SelectedIndex = -1;
                 }
             }
